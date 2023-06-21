@@ -1,0 +1,146 @@
+<div class="all">
+    <div class="header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h4">Cadastrar Aluguel</h1>
+    </div>
+    <div mat-dialog-content class="mat-dialog-content">
+        <form [formGroup]="rentsForm" autocomplete="off" novalidate>
+           
+            <mat-form-field appearance="outline">
+                <mat-label>Codigo do Aluguel: </mat-label>
+                <input matInput placeholder="0123..." formControlName="rentCode" required>
+                <!-- <mat-hint>Informe o CODIGO do Aluguel.</mat-hint> -->
+                <mat-error *ngIf="validateControl('rentCode') && hasError('rentCode', 'required')">Por favor, informe o Codigo.</mat-error>
+                <mat-error *ngIf="validateControl('rentCode') && hasError('rentCode', 'maxlength')">Máximo de 4 caracteres.</mat-error>
+                <mat-error *ngIf="validateControl('rentCode') && hasError('rentCode', 'minlength')">Mínimo de 1 caracteres.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Codigo do Cliente: </mat-label>
+                <mat-select matInput formControlName="customerCode" required>
+                    <mat-option value="codigo"> i </mat-option> 
+                    <mat-option value="codigo"> i+1 </mat-option> 
+                </mat-select>
+                <!-- <mat-hint>Selecione o Codigo do Cliente.</mat-hint> -->
+                <mat-error *ngIf="validateControl('customerCode') && hasError('customerCode', 'required')">Por favor, informe o codigo do Cliente.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Nome do Cliente: </mat-label>
+                <mat-select matInput formControlName="customerName" required>
+                    <mat-option value="customerName"> i </mat-option> 
+                    <mat-option value="customerName"> i+1 </mat-option> 
+                </mat-select>
+                <!-- <mat-hint>Selecione o Nome do Cliente.</mat-hint> -->
+                <mat-error *ngIf="validateControl('customerName') && hasError('customerName', 'required')">Por favor, informe o nome do Cliente.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Codigo do Produto 01: </mat-label>
+                <mat-select matInput formControlName="prodCode1" required>
+                    <mat-option value="codigo"> </mat-option>  <!--Deixar um vazio pra ser selecionado, caso tanha menos produtos-->
+                    <mat-option value="codigo"> i </mat-option> 
+                    <mat-option value="codigo"> i+1 </mat-option> 
+                </mat-select>
+                <!-- <mat-hint>Selecione o Codigo do Cliente.</mat-hint> -->
+                <mat-error *ngIf="validateControl('prodCode1') && hasError('prodCode1', 'required')">Por favor, informe o codigo do Produto.</mat-error>
+            </mat-form-field>
+    
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Codigo do Produto 02: </mat-label>
+                <mat-select matInput formControlName="prodCode2" required>
+                    <mat-option value="codigo"> </mat-option>
+                    <mat-option value="codigo"> i </mat-option> 
+                    <mat-option value="codigo"> i+1 </mat-option> 
+                </mat-select>
+                <!-- <mat-hint>Selecione o Codigo do Cliente.</mat-hint> -->
+                <mat-error *ngIf="validateControl('prodCode2') && hasError('prodCode2', 'required')">Por favor, informe o codigo do Produto.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Codigo do Produto 03: </mat-label>
+                <mat-select matInput formControlName="prodCode3" required>
+                    <mat-option value="codigo"> </mat-option>
+                    <mat-option value="codigo"> i </mat-option> 
+                    <mat-option value="codigo"> i+1 </mat-option> 
+                </mat-select>
+                <!-- <mat-hint>Selecione o Codigo do Cliente.</mat-hint> -->
+                <mat-error *ngIf="validateControl('prodCode3') && hasError('prodCode3', 'required')">Por favor, informe o codigo do Produto.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Codigo do Produto 04: </mat-label>
+                <mat-select matInput formControlName="prodCode4" required>
+                    <mat-option value="codigo"> </mat-option>
+                    <mat-option value="codigo"> i </mat-option> 
+                    <mat-option value="codigo"> i+1 </mat-option> 
+                </mat-select>
+                <!-- <mat-hint>Selecione o Codigo do Cliente.</mat-hint> -->
+                <mat-error *ngIf="validateControl('prodCode4') && hasError('prodCode4', 'required')">Por favor, informe o codigo do Produto.</mat-error>
+            </mat-form-field>
+    
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Codigo do Produto 05: </mat-label>
+                <mat-select matInput formControlName="prodCode5" required>
+                    <mat-option value="codigo"> </mat-option>
+                    <mat-option value="codigo">i</mat-option> 
+                    <mat-option value="codigo">i+1</mat-option> 
+                </mat-select>
+                <!-- <mat-hint>Selecione o Codigo do Cliente.</mat-hint> -->
+                <mat-error *ngIf="validateControl('prodCode5') && hasError('prodCode5', 'required')">Por favor, informe o codigo do Produto.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Valor total do aluguel: </mat-label>
+                <input matInput placeholder="3500,00..." formControlName="amount" required>
+                <!-- <mat-hint>Informe o valor total do aluguel.</mat-hint> -->
+                <mat-error *ngIf="validateControl('amount') && hasError('amount', 'required')">Por favor, informe o Valor Total do Aluguel.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Data do Evento: </mat-label>
+                <input matInput [matDatepicker]="pickers" formControlName="dateEvent" required>
+                <!-- <mat-hint>MM/DD/YYYY --- Selecione a Data do Evento.</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="pickers"></mat-datepicker-toggle>
+                <mat-datepicker #pickers></mat-datepicker>
+                <mat-error *ngIf="validateControl('dateEvent') && hasError('dateEvent', 'required')">Por favor, informe a data do Evento.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Data de Expedição: </mat-label>
+                <input matInput [matDatepicker]="pickers" formControlName="dateExped" required>
+                <!-- <mat-hint>MM/DD/YYYY --- Selecione a Data de Expedição.</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="pickers"></mat-datepicker-toggle>
+                <mat-datepicker #pickers></mat-datepicker>
+                <mat-error *ngIf="validateControl('dateExped') && hasError('dateExped', 'required')">Por favor, informe a data de Expedição.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Data de Devolução: </mat-label>
+                <input matInput [matDatepicker]="pickers" formControlName="dateReturn" required>
+                <!-- <mat-hint>MM/DD/YYYY --- Selecione a Data de Expedição.</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="pickers"></mat-datepicker-toggle>
+                <mat-datepicker #pickers></mat-datepicker>
+                <mat-error *ngIf="validateControl('dateReturn') && hasError('dateReturn', 'required')">Por favor, informe a data de Devolução.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Data de Cadastro: </mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dateCad" required>
+                <!-- <mat-hint>MM/DD/YYYY --- Selecione a Data de Alteração.</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="validateControl('dateCad') && hasError('dateCad', 'required')">Por favor, informe a data de Cadastro.</mat-error>
+            </mat-form-field>
+    
+        </form>
+    </div>
+    
+    <div mat-dialog-action [align]="'end'" class="border-top">
+        <button class="save" mat-raised-button color="primary" [disabled]="!rentsForm.valid" (click)="createRent()">Cadastrar</button>
+        <button class="contract" mat-raised-button color="primary" [routerLink]="['/rents/contract-document']" 
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">Contrato</button>
+    </div>
+    </div>

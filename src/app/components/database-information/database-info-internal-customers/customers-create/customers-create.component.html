@@ -1,0 +1,107 @@
+<h1 mat-dialog-title class="border-bottom">Detalhes do Cliente: </h1>
+<div mat-dialog-content >
+    <form [formGroup]="customerForm" autocomplete="off" novalidate>
+      <mat-form-field appearance="outline">
+        <mat-label>Codigo do Cliente: </mat-label>
+        <input matInput placeholder="01..." formControlName="customerCode" required>
+            
+         <mat-hint>Selecione o Codigo do Cliente.</mat-hint>
+        <mat-error *ngIf="validateControl('customerCode') && hasError('customerCode', 'required')">Por favor, informe o codigo do Cliente.</mat-error>
+        <mat-error *ngIf="validateControl('customerCode') && hasError('customerCode', 'maxlength')">Máximo de 4 caracteres.</mat-error>
+        <mat-error *ngIf="validateControl('customerCode') && hasError('customerCode', 'minlength')">Máximo de 3 caracteres.</mat-error>
+        <mat-error *ngIf="validateControl('customerCode') && hasError('customerCode', 'pattern')">Máximo de 3 caracteres.</mat-error>
+     </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nome do Cliente: </mat-label>
+        <input matInput placeholder="Fulano..." formControlName="name" required>
+        <mat-hint>Insira o Nome do Cliente.</mat-hint>
+        <mat-error *ngIf="validateControl('name') && hasError('name', 'required')">Por favor, digite o nome do Cliente.</mat-error>
+        <mat-error *ngIf="validateControl('name') && hasError('name', 'maxlength')">Máximo de 45 caracteres.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Sobrenome do Cliente: </mat-label>
+        <input matInput placeholder="Beltrano..." formControlName="lastName" required>
+        <mat-hint>Insira o Sobrenome do Cliente.</mat-hint>
+        <mat-error *ngIf="validateControl('lastName') && hasError('lastName', 'required')">Por favor, digite o Sobrenome do Cliente.</mat-error>
+        <mat-error *ngIf="validateControl('lastName') && hasError('lastName', 'maxlength')">Máximo de 45 caracteres.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>CPF do Cliente: </mat-label>
+        <input matInput placeholder="123.345.678-90..." formControlName="cpf" required>
+        <mat-hint>Informe o CPF do cliente.</mat-hint>
+        <mat-error *ngIf="validateControl('cpf') && hasError('cpf', 'required')">Por favor, informe o CNPJ.</mat-error>
+        <mat-error *ngIf="validateControl('cpf') && hasError('cpf', 'maxlength')">Máximo de 15 caracteres.</mat-error>
+    </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Contato do Cliente: </mat-label>
+            <input matInput placeholder="123.345.678-90..." formControlName="contact" required>
+            <mat-hint>Informe o Contato do cliente.</mat-hint>
+            <mat-error *ngIf="validateControl('contact') && hasError('contact', 'required')">Por favor, informe o Contato.</mat-error>
+            <mat-error *ngIf="validateControl('contact') && hasError('contact', 'maxlength')">Máximo de 11 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email do Cliente: </mat-label>
+            <input matInput placeholder="email@gmail.com" formControlName="email" required>
+            <mat-hint>Informe o Email da pessoa.</mat-hint>
+            <mat-error *ngIf="validateControl('email') && hasError('email', 'required')">Por favor, informe o Email.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Endereço: </mat-label>
+            <input matInput placeholder="festas de casamento..." formControlName="address" required>
+            <mat-hint>Insira o endereço do Cliente.</mat-hint>
+            <mat-error *ngIf="validateControl('address') && hasError('address', 'required')">Por favor, digite o endereço do Cliente.</mat-error>
+            <mat-error *ngIf="validateControl('address') && hasError('address', 'maxlength')">Máximo de 45 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Cidade: </mat-label>
+            <input matInput placeholder="São Paulo..." formControlName="city" required>
+            <mat-hint>Selecione a Cidade.</mat-hint>
+            <mat-error *ngIf="validateControl('city') && hasError('city', 'required')">Por favor, informe a Cidade</mat-error>
+          </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline">
+            <mat-label>Estado: </mat-label>
+            <input matInput placeholder="São Paulo..." formControlName="state" required>
+            <mat-hint>Selecione o Estado.</mat-hint>
+            <mat-error *ngIf="validateControl('state') && hasError('state', 'required')">Por favor, informe o Estado</mat-error>
+          </mat-form-field>
+    
+          <mat-form-field appearance="outline">
+            <mat-label>País: </mat-label>
+            <input matInput placeholder="Brasil..." formControlName="country" required>
+            <mat-hint>Selecione o País.</mat-hint>
+            <mat-error *ngIf="validateControl('country') && hasError('country', 'required')">Por favor, informe o Pais</mat-error>
+          </mat-form-field> -->
+
+        <mat-form-field appearance="outline">
+            <mat-label>Status: </mat-label>
+            <mat-select matInput formControlName="status" required>
+                <mat-option value="Ativo">Ativo</mat-option>
+                <mat-option value="Inativo">Inativo</mat-option>
+            </mat-select>
+            <mat-hint>Selecione o Status referente ao Cliente.</mat-hint>
+            <mat-error *ngIf="validateControl('status') && hasError('status', 'required')">Por favor, informe o Status do Cliente.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Data de Cadastro: </mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateCad" required>
+            <mat-hint>MM/DD/YYYY --- Selecione a Data de Alt.</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="validateControl('dateCad') && hasError('dateCad', 'required')">Por favor, informe a data de Cadastro.</mat-error>
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-action [align]="'end'" class="border-top">
+    <button id="close" class="close" mat-raised-button mat-dialog-close>Fechar</button>
+    <button class="save" mat-raised-button color="primary" [disabled]="!customerForm.valid" (click)="createCustomer()">Salvar Alterações</button>
+</div>

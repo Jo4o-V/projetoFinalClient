@@ -1,0 +1,53 @@
+<div id="content" class="all" #content>
+    <div
+        class="header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h4">Contrato @codigoAlug</h1>
+    </div>
+    <br>
+    <div class="corpo">
+        <table>
+        <tr>
+        <td colspan="2">
+        <p><b>Data:</b> @dataAluguel</p>
+        <p><b>Nome:</b> @nameCli (@codigoCli)</p>
+        <p><b>Produtos:</b> @codigoProd </p>
+
+        <p> <b>Reservado para:</b> @dataEvento &nbsp; <b>Retirada:</b>@dataExped &nbsp;<b>Devolução:</b>@dataDevo</p>
+        <p> <b>Valor Total:</b> @valorTotal</p>
+        <br />
+        <p><b>PROVA FINAL : </b> É obrigatorio a prova final do traje na retirada, não sendo aceitas reclamções
+            posteriores.</p>
+
+        <p><b>ATRASO : </b> O traje que for retirado, terá que ser entregue no máximo
+            após 03 (três) dias; salvo se for Domingo ou Feriado e o não cumprimento do prazo aqui estipulado
+            será cobrado o valor de 1 (um) aluguel atualizado por dia de atraso e a não devoluçao do mesmo será
+            considerado extravio, podendo o
+            locador tomar as providências legais que se fizerem necessárias, para ressarcir-se dos prejuízos
+            causados.
+        </p>
+        <p><b>DO PAGAMENTO : </b> Qualquer pagamento efetuado em cheque, somente dará
+            quitação ao valor da locação do traje, após a devida compensação bancária do mesmo </p>
+        <p><b>SINAL : </b>O sinal não poderá ser devolvido, pois desde a contratação
+            de locação inicia-se a preparação do traje</p>
+
+        <p><b>Assino por este contrato o termo de responsabilidade que o periodo de
+                locação é meu(minha) sendo que será cobrado danos causados e/ou extraviados que por ventura
+                vierem a ocorrer no traje, bem como acessórios, cabides, capas, etc.
+            </b></p>
+        </td>
+        </tr>
+        <br />
+        <tr>
+            <td> ______________________ </td>
+            <td> ______________________</td>
+        </tr>
+        <tr >
+            <td>Ass.Locador</td>
+            <td>Ass. Locatário</td>
+        </tr>
+    </table>
+    </div>
+</div>
+<br>
+<br>
+<button mat-raised-button color="primary" class="contract" (click)="gerarPDF()">&nbsp; Gerar PDF &nbsp;</button>

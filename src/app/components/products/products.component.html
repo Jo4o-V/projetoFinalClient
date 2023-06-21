@@ -1,0 +1,116 @@
+<div class="all">
+    <div class="header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h4">Cadastrar Produto</h1>
+    </div>
+    
+    <div mat-dialog-content class="mat-dialog-content">
+        <form [formGroup]="productsForm" autocomplete="off" novalidate>
+           
+            <mat-form-field appearance="outline">
+                <mat-label>Codigo do Produto: </mat-label>
+                <input matInput placeholder="0123..." formControlName="code" required>
+                <!-- <mat-hint>Informe o CODIGO do Produto.</mat-hint> -->
+                <mat-error *ngIf="validateControl('code') && hasError('code', 'required')">Por favor, informe o Codigo.</mat-error>
+                <mat-error *ngIf="validateControl('code') && hasError('code', 'maxlength')">Máximo de 4 caracteres.</mat-error>
+                <mat-error *ngIf="validateControl('code') && hasError('code', 'minlength')">Mínimo de 1 caracteres.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Tipo do Produto: </mat-label>
+                <mat-select matInput formControlName="type" required>
+                    <mat-option *ngFor="let stock of stocks" [value]="stock.type">{{stock.type}}</mat-option>
+                </mat-select>
+                <!-- <mat-hint>Selecione o TIPO do Produto.</mat-hint> -->
+                <mat-error *ngIf="validateControl('type') && hasError('type', 'required')">Por favor, informe o tipo do Produto.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Gênero do Produto: </mat-label>
+                <mat-select matInput formControlName="gender" required>
+                    <mat-option value="Feminino">Feminino</mat-option>
+                    <mat-option value="Masculino">Masculino</mat-option>               
+                </mat-select>
+                <!-- <mat-hint>Selecione o GÊNERO do Produto.</mat-hint> -->
+                <mat-error *ngIf="validateControl('gender') && hasError('gender', 'required')">Por favor, informe o gênero do Produto.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Faixa Etária do Produto: </mat-label>
+                <mat-select matInput formControlName="range" required>
+                    <mat-option value="infantil">Infantil</mat-option> 
+                    <mat-option value="Infantojuvenil">Juvenil</mat-option> 
+                    <mat-option value="adulto">Adulto</mat-option>
+                </mat-select>
+                <!-- <mat-hint>Selecione a FAIXA ETÁRIA do Produto.</mat-hint> -->
+                <mat-error *ngIf="validateControl('range') && hasError('range', 'required')">Por favor, informe a faixa etária do Produto.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Cor do Produto: </mat-label>
+                <input matInput placeholder="Branco, Preto..." formControlName="color" required>
+                <!-- <mat-hint>Informe a COR do Produto.</mat-hint> -->
+                <mat-error *ngIf="validateControl('color') && hasError('color', 'required')">Por favor, informe a cor do Produto.</mat-error>
+                <mat-error *ngIf="validateControl('color') && hasError('color', 'maxlength')">Máximo de 15 caracteres.</mat-error>
+                <mat-error *ngIf="validateControl('color') && hasError('color', 'minlength')">Mínimo de 4 caracteres.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Tamanho do Produto: </mat-label>
+                <input matInput placeholder="M, GG, 37..." formControlName="size" required>
+                <!-- <mat-hint>Informe o TAMANHO do Produto.</mat-hint> -->
+                <mat-error *ngIf="validateControl('size') && hasError('size', 'required')">Por favor, informe o tamanho do Produto.</mat-error>
+                <mat-error *ngIf="validateControl('size') && hasError('size', 'maxlength')">Máximo de 2 caracteres.</mat-error>
+                <mat-error *ngIf="validateControl('size') && hasError('size', 'minlength')">Mínimo de 1 caracteres.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Medida Cintura (cm): </mat-label>
+                <input matInput placeholder="70cm..." formControlName="waistMeasure" required>
+                <!-- <mat-hint>Informe a Medida.</mat-hint> -->
+                <mat-error *ngIf="validateControl('waistMeasure') && hasError('waistMeasure', 'required')">Por favor, informe a Medida.</mat-error>
+                <mat-error *ngIf="validateControl('waistMeasure') && hasError('waistMeasure', 'maxlength')">Máximo de 3 caracteres.</mat-error>
+                <mat-error *ngIf="validateControl('waistMeasure') && hasError('waistMeasure', 'minlength')">Mínimo de 1 caracteres.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Medida Barra (cm): </mat-label>
+                <input matInput placeholder="50cm..." formControlName="barMeasure" required>
+                <!-- <mat-hint>Informe a Medida.</mat-hint> -->
+                <mat-error *ngIf="validateControl('barMeasure') && hasError('barMeasure', 'required')">Por favor, informe a Medida.</mat-error>
+                <mat-error *ngIf="validateControl('barMeasure') && hasError('barMeasure', 'maxlength')">Máximo de 3 caracteres.</mat-error>
+                <mat-error *ngIf="validateControl('barMeasure') && hasError('barMeasure', 'minlength')">Mínimo de 1 caracteres.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Preço do Produto: </mat-label>
+                <input matInput placeholder="3500,00..." formControlName="value" required>
+                <!-- <mat-hint>Informe o Preço do Produto.</mat-hint> -->
+                <mat-error *ngIf="validateControl('value') && hasError('value', 'required')">Por favor, informe o Preço do Produto.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Status do Produto: </mat-label>
+                <mat-select matInput formControlName="status" required>
+                    <mat-option value="ativo">Ativo</mat-option>
+                    <mat-option value="inativo">Inativo</mat-option>
+                    <mat-option value="danificado">Danificado</mat-option>  
+                </mat-select>
+                <!-- <mat-hint>Selecione o STATUS do Produto.</mat-hint> -->
+                <mat-error *ngIf="validateControl('status') && hasError('status', 'required')">Por favor, informe o Status do Produto.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Data de Entrada: </mat-label>
+                <input matInput [matDatepicker]="pickers" formControlName="dateCad" required>
+                <!-- <mat-hint>MM/DD/YYYY --- Selecione a Data de Entrada.</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="pickers"></mat-datepicker-toggle>
+                <mat-datepicker #pickers></mat-datepicker>
+                <mat-error *ngIf="validateControl('dateCad') && hasError('dateCad', 'invalidDate')">Por favor, informe a data de Cadastro.</mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+    
+    <div mat-dialog-action [align]="'end'" class="border-top">
+        <button class="save" mat-raised-button color="primary" [disabled]="!productsForm.valid" (click)="createProduct()">Cadastrar</button>
+    </div>
+</div>

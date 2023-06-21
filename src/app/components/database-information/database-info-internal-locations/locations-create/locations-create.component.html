@@ -1,0 +1,67 @@
+<h1 mat-dialog-title class="border-bottom">Adicionar novo Estoque: </h1>
+<div mat-dialog-content >
+    <form [formGroup]="stockForm" autocomplete="off" novalidate>
+      <mat-form-field appearance="outline">
+        <mat-label>Nome do Estoque: </mat-label>
+        <input matInput placeholder="Brasil..." formControlName="name" required>
+        <mat-hint>Insira o Nome do Estoque.</mat-hint>
+        <mat-error *ngIf="validateControl('name') && hasError('name', 'required')">Por favor, digite o nome do Estoque.</mat-error>
+        <mat-error *ngIf="validateControl('name') && hasError('name', 'maxlength')">Máximo de 45 caracteres.</mat-error>
+      </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Contato do Estoque: </mat-label>
+            <input matInput placeholder="123.345.678-90..." formControlName="contact" required>
+            <mat-hint>Informe o Contato do parceiro.</mat-hint>
+            <mat-error *ngIf="validateControl('contact') && hasError('contact', 'required')">Por favor, informe o Contato.</mat-error>
+            <mat-error *ngIf="validateControl('contact') && hasError('contact', 'maxlength')">Máximo de 15 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email do Estoque: </mat-label>
+            <input matInput placeholder="email@gmail.com" formControlName="email" required>
+            <mat-hint>Informe o Email da pessoa.</mat-hint>
+            <mat-error *ngIf="validateControl('email') && hasError('email', 'required')">Por favor, informe o Email.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo de Estoque: </mat-label>
+            <input matInput placeholder="trajes de casamento..." formControlName="stockType" required>
+            <mat-hint>Insira o Nome do Tipo Estoque.</mat-hint>
+            <mat-error *ngIf="validateControl('stockType') && hasError('stockType', 'required')">Por favor, digite o nome do Estoque.</mat-error>
+            <mat-error *ngIf="validateControl('stockType') && hasError('stockType', 'maxlength')">Máximo de 45 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Quantidade Total de Produtos: </mat-label>
+            <input matInput placeholder="123..." formControlName="qtdTotal" required>
+            <mat-hint>Informe o qtd total do estoque.</mat-hint>
+            <mat-error *ngIf="validateControl('qtdTotal') && hasError('qtdTotal', 'required')">Por favor, informe a Qtd.</mat-error>
+            <mat-error *ngIf="validateControl('qtdTotal') && hasError('qtdTotal', 'maxlength')">Máximo de 5 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Status: </mat-label>
+            <mat-select matInput formControlName="status" required>
+                <mat-option value="active">Ativo</mat-option>
+                <mat-option value="inactive">Inativo</mat-option>
+            </mat-select>
+            <mat-hint>Selecione o Status referente ao Estoque.</mat-hint>
+            <mat-error *ngIf="validateControl('status') && hasError('status', 'required')">Por favor, informe o Status do Estoque.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Data de Cadastro: </mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateCad" required>
+            <mat-hint>MM/DD/YYYY --- Selecione a Data de Cad.</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="validateControl('dateCad') && hasError('dateCad', 'required')">Por favor, informe a data de Cadastro.</mat-error>
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-action [align]="'end'" class="border-top">
+    <button class="close" mat-raised-button mat-dialog-close>Fechar</button>
+    <button class="save" mat-raised-button color="primary" [disabled]="!stockForm.valid" (click)="createStock()">Salvar</button>
+</div>

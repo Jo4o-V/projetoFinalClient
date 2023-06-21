@@ -1,0 +1,25 @@
+mat-form-field {
+    width: 30%;
+    padding: 0.5rem;
+}
+
+button {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+button.contract {
+    margin-right: 0.5rem;
+}
+
+button.save {
+    margin-right: 2.1rem;
+}
+
+.ng-invalid.ng-touched{ 
+    border-color: red; 
+}
+
+.mat-dialog-content {
+    margin-left: 6.5rem;
+}

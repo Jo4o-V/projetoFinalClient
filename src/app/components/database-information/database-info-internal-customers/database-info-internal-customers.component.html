@@ -1,0 +1,44 @@
+<div class="header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h4">Clientes</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <button type="button" class="btn btn-outline-primary" matTooltip="Cadastrar Cliente" (click)="dialogCreate()">Cadastrar</button>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Sobrenome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Status</th>
+                <th scope="col">Detalhes</th>
+                <th scope="col">Atualizar</th>
+                <th scope="col">Deletar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers | paginate: {itemsPerPage: pageNumber, currentPage: currentPg}; let i= index">
+                <td>{{i+1}}</td>
+                <td>{{customer.name}}</td>
+                <td>{{customer.lastName}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.status}}</td>
+                <td><a class="icon-blue" matTooltip="Ver Cliente"><mat-icon>search</mat-icon></a></td>
+                <td><a class="icon-green" matTooltip="Editar Cliente"><mat-icon>edit</mat-icon></a></td>
+                <td><a class="icon-red" matTooltip="Excluir Cliente" (click)="deleteDetail(customer)"><mat-icon>delete</mat-icon></a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="paginate">
+        <pagination-controls (pageChange)="currentPg = $event"></pagination-controls>
+        <div>
+            <small>Nº de itens por página</small>
+            <button class="button-page" (click)="decreasePage()"><i class="fa fa-minus"></i></button>
+            <input class="input" [value]="pageNumber">
+            <button class="button-page" (click)="increasePage()"><i class="fa fa-plus"></i></button>
+        </div>
+    </div>
+</div>

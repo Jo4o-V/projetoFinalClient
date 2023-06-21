@@ -1,0 +1,50 @@
+<h1 mat-dialog-title class="border-bottom">Adicionar nova Cidade: </h1>
+<div mat-dialog-content >
+    <form [formGroup]="cityForm" autocomplete="off" novalidate>
+      <mat-form-field appearance="outline">
+        <mat-label>Nome do Cidade: </mat-label>
+        <input matInput placeholder="São Paulo..." formControlName="name" required>
+        <mat-hint>Insira o Nome completo do Cidade.</mat-hint>
+        <mat-error *ngIf="validateControl('name') && hasError('name', 'required')">Por favor, digite o nome do Cidade.</mat-error>
+        <mat-error *ngIf="validateControl('name') && hasError('name', 'maxlength')">Máximo de 45 caracteres.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Estado: </mat-label>
+        <input matInput placeholder="São Paulo..." formControlName="state" required>
+        <mat-hint>Selecione o Estado referente a Cidade.</mat-hint>
+        <mat-error *ngIf="validateControl('state') && hasError('state', 'required')">Por favor, informe o Estado</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>País: </mat-label>
+        <input matInput placeholder="Brasil..." formControlName="country" required>
+        <mat-hint>Selecione o País referente ao Estado.</mat-hint>
+        <mat-error *ngIf="validateControl('country') && hasError('country', 'required')">Por favor, informe o Pais</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Status: </mat-label>
+        <mat-select matInput formControlName="status" required>
+            <mat-option value="active">Ativo</mat-option>
+            <mat-option value="inactive">Inativo</mat-option>
+        </mat-select>
+        <mat-hint>Selecione o Status referente ao Cidade.</mat-hint>
+        <mat-error *ngIf="validateControl('status') && hasError('status', 'required')">Por favor, informe o Status do Cidade.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+          <mat-label>Data de Cadastro: </mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateCad" required>
+          <mat-hint>MM/DD/YYYY --- Selecione a Data de Cad.</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="validateControl('dateCad') && hasError('dateCad', 'required')">Por favor, informe a data de Cadastro.</mat-error>
+      </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-action [align]="'end'" class="border-top">
+    <button class="close" mat-raised-button mat-dialog-close>Fechar</button>
+    <button class="save" mat-raised-button color="primary" [disabled]="!cityForm.valid" (click)="createCity()">Salvar</button>
+</div>

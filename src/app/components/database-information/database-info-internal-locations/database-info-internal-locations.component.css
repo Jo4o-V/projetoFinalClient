@@ -1,0 +1,49 @@
+a {
+    cursor: pointer;
+    margin-left: 1.4rem;
+}
+
+a.icon-blue {
+    color: blue;   
+}
+
+a.icon-green {
+    color: green;   
+}
+
+a.icon-red {
+    color: red;   
+}
+
+a.icon-red:hover {
+    color: yellow;
+}
+
+.paginate {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 35px;
+}
+
+small {
+    font-style: italic;
+    opacity: 0.3;
+    margin-right: 10px;
+}
+
+.input {
+    text-align: center;
+}
+
+.button-page {
+    background: #2199e8;
+    color: #fff;
+}
+
+.button-page, 
+.input {
+    border: none;
+    margin-right: 2px;
+    width: 30px;
+    height: 30px;
+}

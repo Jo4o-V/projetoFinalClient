@@ -1,0 +1,48 @@
+.page_404 {
+    margin-left: 16.5rem;
+    margin-top: -35px;
+    background: #f4f7fa;
+    font-family: 'Poppins', sans-serif;
+}
+
+.page_404 img {
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.four_zero_four_bg {
+    background: url(../../../../assets/images/page_error_404.gif);
+    height: 350px;
+    background-position: center;
+}
+
+h1 {
+    margin-left: -45px;
+    font-size: 6rem;
+    color: rgb(219, 27, 27);
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+.content_box_404 a {
+    color: #ffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    background: #39ac31;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.content_box_404 {
+    margin-top: -10px;
+}

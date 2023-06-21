@@ -1,0 +1,67 @@
+<h1 mat-dialog-title class="border-bottom">Adicionar novo Fornecedor: </h1>
+<div mat-dialog-content >
+    <form [formGroup]="supplierForm" autocomplete="off" novalidate>
+      <mat-form-field appearance="outline">
+        <mat-label>Nome do Fornecedor: </mat-label>
+        <input matInput placeholder="Brasil..." formControlName="name" required>
+        <mat-hint>Insira o Nome do Fornecedor.</mat-hint>
+        <mat-error *ngIf="validateControl('name') && hasError('name', 'required')">Por favor, digite o nome do Fornecedor.</mat-error>
+        <mat-error *ngIf="validateControl('name') && hasError('name', 'maxlength')">Máximo de 45 caracteres.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>CNPJ do Fornecedor: </mat-label>
+        <input matInput placeholder="123.345.678-90..." formControlName="cnpj" required>
+        <mat-hint>Informe o CNPJ do parceiro.</mat-hint>
+        <mat-error *ngIf="validateControl('cnpj') && hasError('cnpj', 'required')">Por favor, informe o CNPJ.</mat-error>
+        <mat-error *ngIf="validateControl('cnpj') && hasError('cnpj', 'maxlength')">Máximo de 15 caracteres.</mat-error>
+    </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Contato do Fornecedor: </mat-label>
+            <input matInput placeholder="123.345.678-90..." formControlName="contact" required>
+            <mat-hint>Informe o Contato do parceiro.</mat-hint>
+            <mat-error *ngIf="validateControl('contact') && hasError('contact', 'required')">Por favor, informe o Contato.</mat-error>
+            <mat-error *ngIf="validateControl('contact') && hasError('contact', 'maxlength')">Máximo de 15 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email do Fornecedor: </mat-label>
+            <input matInput placeholder="email@gmail.com" formControlName="email" required>
+            <mat-hint>Informe o Email da pessoa.</mat-hint>
+            <mat-error *ngIf="validateControl('email') && hasError('email', 'required')">Por favor, informe o Email.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Parceria: </mat-label>
+            <input matInput placeholder="festas de casamento..." formControlName="supply" required>
+            <mat-hint>Insira o Nome do Fornecedor.</mat-hint>
+            <mat-error *ngIf="validateControl('supply') && hasError('supply', 'required')">Por favor, digite o nome do Fornecedor.</mat-error>
+            <mat-error *ngIf="validateControl('supply') && hasError('supply', 'maxlength')">Máximo de 45 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Status: </mat-label>
+            <mat-select matInput formControlName="status" required>
+                <mat-option value="active">Ativo</mat-option>
+                <mat-option value="inactive">Inativo</mat-option>
+            </mat-select>
+            <mat-hint>Selecione o Status referente ao Fornecedor.</mat-hint>
+            <mat-error *ngIf="validateControl('status') && hasError('status', 'required')">Por favor, informe o Status do Fornecedor.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Data de Cadastro: </mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateCad" required>
+            <mat-hint>MM/DD/YYYY --- Selecione a Data de Cad.</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="validateControl('dateCad') && hasError('dateCad', 'required')">Por favor, informe a data de Cadastro.</mat-error>
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-action [align]="'end'" class="border-top">
+    <button class="close" mat-raised-button mat-dialog-close>Fechar</button>
+    <button class="save" mat-raised-button color="primary" [disabled]="!supplierForm.valid" (click)="createSupplier()">Salvar</button>
+</div>

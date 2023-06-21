@@ -1,0 +1,96 @@
+<h1 mat-dialog-title class="border-bottom">Adicionar novo Colaborador: </h1>
+<div mat-dialog-content >
+    <form [formGroup]="collaboratorForm" autocomplete="off" novalidate>
+        <mat-form-field appearance="outline">
+            <mat-label>Nome do Colaborador: </mat-label>
+            <input matInput placeholder="Nome..." formControlName="name" required>
+            <mat-hint>Informe o PRIMEIRO Nome da pessoa.</mat-hint>
+            <mat-error *ngIf="validateControl('name') && hasError('name', 'required')">Por favor, informe o Nome.</mat-error>
+            <mat-error *ngIf="validateControl('name') && hasError('name', 'maxlength')">Máximo de 45 caracteres.</mat-error>
+            <mat-error *ngIf="validateControl('name') && hasError('name', 'minlength')">Mínimo de 3 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Sobrenome do Colaborador: </mat-label>
+            <input matInput placeholder="Sobrenome..." formControlName="lastName" required>
+            <mat-hint>Informe o SOBRENOME da pessoa.</mat-hint>
+            <mat-error *ngIf="validateControl('lastName') && hasError('lastName', 'required')">Por favor, informe o Sobrenome.</mat-error>
+            <mat-error *ngIf="validateControl('lastName') && hasError('lastName', 'maxlength')">Máximo de 45 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>CPF do Colaborador: </mat-label>
+            <input matInput placeholder="123.345.678-90..." formControlName="cpf" required>
+            <mat-hint>Informe o CPF da pessoa.</mat-hint>
+            <mat-error *ngIf="validateControl('cpf') && hasError('cpf', 'required')">Por favor, informe o CPF.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email do Colaborador: </mat-label>
+            <input matInput placeholder="email@gmail.com" formControlName="email" required>
+            <mat-hint>Informe o Email da pessoa.</mat-hint>
+            <mat-error *ngIf="validateControl('email') && hasError('email', 'required')">Por favor, informe o Email.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Nome de Usuário: </mat-label>
+            <input matInput placeholder="nome@1..." formControlName="userName" required>
+            <mat-hint>Crie um Nome de Usuário.</mat-hint>
+            <mat-error *ngIf="validateControl('userName') && hasError('userName', 'required')">Por favor, informe o Nome de Usuário.</mat-error>
+            <mat-error *ngIf="validateControl('userName') && hasError('userName', 'maxlength')">Máximo de 10 caracteres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Senha de Usuário: </mat-label>
+            <input matInput placeholder="Admin@10..." formControlName="password" required>
+            <mat-hint>Crie uma Senha de Usuário.</mat-hint>
+            <mat-error *ngIf="validateControl('password') && hasError('password', 'required')">Por favor, informe a Senha do Usuário.</mat-error>
+            <mat-error *ngIf="validateControl('password') && hasError('password', 'maxlength')">Mínimo de 8 caracteres.</mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline">
+            <mat-label>Cargo do Colaborador: </mat-label>
+            <mat-select formControlName="role" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let role of roles" [value]="role">
+                    {{role.name}}
+                </mat-option>
+                </mat-select>
+            <mat-hint>Selecione um Cargo.</mat-hint>
+            <mat-error *ngIf="validateControl('role') && hasError('role', 'required')">Por favor, escolha um Cargo.</mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field appearance="outline">
+            <mat-label>Salários do Usuário: </mat-label>
+            <input matInput placeholder="3500,00..." formControlName="wage" required>
+            <mat-hint>Informe o Salário do Usuário.</mat-hint>
+            <mat-error *ngIf="validateControl('wage') && hasError('wage', 'required')">Por favor, informe o Salário do Usuário.</mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline">
+            <mat-label>Status: </mat-label>
+            <mat-select formControlName="status" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let st of status" [value]="st">
+                {{st.name}}
+            </mat-option>
+            </mat-select>
+            <mat-hint>Selecione o Status do Colaborador.</mat-hint>
+            <mat-error *ngIf="validateControl('status') && hasError('status', 'required')">Por favor, escolha um Status.</mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field appearance="outline">
+            <mat-label>Data de Cadastro: </mat-label>
+            <input matInput [matDatepicker]="pickers" formControlName="dateCad" required>
+            <mat-hint>MM/DD/YYYY --- Selecione a Data de Cad.</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="pickers"></mat-datepicker-toggle>
+            <mat-datepicker #pickers></mat-datepicker>
+            <mat-error *ngIf="validateControl('dateCad') && hasError('dateCad', 'required')">Por favor, informe a data de Cadastro.</mat-error>
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-action [align]="'end'" class="border-top">
+    <button class="close" mat-raised-button mat-dialog-close>Fechar</button>
+    <button class="save" mat-raised-button color="primary" [disabled]="!collaboratorForm.valid" (click)="createCollaborator()">Cadastrar</button>
+</div>

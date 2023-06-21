@@ -1,0 +1,58 @@
+<div class="container">
+    <h1 mat-dialog-title class="border-bottom">Adicionar nova Categoria: </h1>
+    <div mat-dialog-content >
+        <form [formGroup]="categoryForm" autocomplete="off" novalidate>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Código da Categoria: </mat-label>
+                <input matInput placeholder="01,02..." formControlName="code" required>
+                <mat-hint>Informe o código da Categoria.</mat-hint>
+                <mat-error *ngIf="validateControl('code') && hasError('code', 'required')">Por favor, informe o Codigo.</mat-error>
+                <mat-error *ngIf="validateControl('code') && hasError('code', 'maxlength')">Máximo de 3 caracteres.</mat-error>
+                <mat-error *ngIf="validateControl('code') && hasError('code', 'minlength')">Mínimo de 1 caracteres.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Nova Categoria: </mat-label>
+                <input matInput placeholder="Casamento..." formControlName="category" required>
+                <!-- <mat-hint>Informe o TIPO do Produto.</mat-hint> -->
+                <mat-error *ngIf="validateControl('category') && hasError('categoria', 'required')">Por favor, informe o nova categoria de Produto.</mat-error>
+                <mat-error *ngIf="validateControl('category') && hasError('category', 'maxlength')">Máximo de 50 caracteres.</mat-error>
+                <mat-error *ngIf="validateControl('category') && hasError('category', 'minlength')">Mínimo de 5 caracteres.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Tipo de Produtos: </mat-label>
+                <input matInput placeholder="Vestido de noiva..." formControlName="type" required>
+                <!-- <mat-hint>Informe o TIPO do Produto.</mat-hint> -->
+                <mat-error *ngIf="validateControl('type') && hasError('type', 'required')">Por favor, informe o novo tipo do Produto.</mat-error>
+                <mat-error *ngIf="validateControl('type') && hasError('type', 'maxlength')">Máximo de 50 caracteres.</mat-error>
+                <mat-error *ngIf="validateControl('type') && hasError('type', 'minlength')">Mínimo de 5 caracteres.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Status: </mat-label>
+                <mat-select matInput formControlName="status" required>
+                    <mat-option value="Ativo">Ativo</mat-option>
+                    <mat-option value="Inativo">Inativo</mat-option>
+                </mat-select>
+                <mat-hint>Selecione o Status referente ao País.</mat-hint>
+                <mat-error *ngIf="validateControl('status') && hasError('status', 'required')">Por favor, selecione o status do País.</mat-error>
+              </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Data de Entrada: </mat-label>
+                <input matInput [matDatepicker]="pickers" formControlName="dateCad" required>
+                <!-- <mat-hint>MM/DD/YYYY --- Selecione a Data de Entrada.</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="pickers"></mat-datepicker-toggle>
+                <mat-datepicker #pickers></mat-datepicker>
+                <mat-error *ngIf="validateControl('dateCad') && hasError('dateCad', 'invalidDate')">Por favor, informe a data de Cadastro.</mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-action [align]="'end'" class="border-top">
+        <button id="close" class="close" mat-raised-button mat-dialog-close>Fechar</button>
+        <button class="save" mat-raised-button color="primary" [disabled]="!categoryForm.valid" (click)="createCategory()">Cadastrar</button>
+    </div>
+</div>

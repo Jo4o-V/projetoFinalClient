@@ -1,0 +1,134 @@
+<div class="header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h4">Localizações</h1>
+</div>
+
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab class="mat-tab" label="Paises">
+    <div class="btn-toolbar button mb-2 mb-md-0">
+      <button type="button" class="btn btn-outline-primary button-cad" matTooltip="Cadastrar País" (click)="dialogCreateCountry()">Cadastrar</button>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+          <thead class="thead-dark">
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Sigla</th>
+                  <th scope="col">Continente</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Detalhes</th>
+                  <th scope="col">Atualizar</th>
+                  <th scope="col">Deletar</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let country of countries | paginate: {itemsPerPage: pageNumber, currentPage: currentPgCountry}; let i= index">
+                  <td>{{i+1}}</td>
+                  <td>{{country.name}}</td>
+                  <td>{{country.acronym}}</td>
+                  <td>{{country.continent}}</td>
+                  <td>{{country.status}}</td>
+                  <td><a class="icon-blue" matTooltip="Ver País"><mat-icon>search</mat-icon></a></td>
+                  <td><a class="icon-green" matTooltip="Editar País" (click)="dialogEditCountry(country)"><mat-icon>edit</mat-icon></a></td>
+                  <td><a class="icon-red" matTooltip="Excluir País" (click)="deleteCountryDetail(country)"><mat-icon>delete</mat-icon></a></td>
+              </tr>
+          </tbody>
+      </table>
+      <div class="paginate">
+        <pagination-controls (pageChange)="currentPgCountry = $event"></pagination-controls>
+        <div>
+            <small>Nº de itens por página</small>
+            <button class="button-page" (click)="decreasePageCountry()"><i class="fa fa-minus"></i></button>
+            <input class="input" [value]="pageNumber">
+            <button class="button-page" (click)="increasePageCountry()"><i class="fa fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Estados">
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <button type="button" class="btn btn-outline-primary button-cad" matTooltip="Cadastrar Estado" (click)="dialogCreateState()">Cadastrar</button>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+          <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Sigla</th>
+                <th scope="col">País</th>
+                <th scope="col">Status</th>
+                <th scope="col">Detalhes</th>
+                <th scope="col">Atualizar</th>
+                <th scope="col"></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let state of states | paginate: {itemsPerPage: pageNumber, currentPage: currentPgState}; let i= index">
+                  <td>{{i+1}}</td>
+                  <td>{{state.name}}</td>
+                  <td>{{state.acronym}}</td>
+                  <td>{{state.country.name}}</td>
+                  <td>{{state.status}}</td>
+                  <td><a class="icon-blue" matTooltip="Ver Estado"><mat-icon>search</mat-icon></a></td>
+                  <td><a class="icon-green" matTooltip="Editar Estado"><mat-icon>edit</mat-icon></a></td>
+                  <td><a class="icon-red" matTooltip="Excluir Estado"><mat-icon>delete</mat-icon></a></td>
+              </tr>
+          </tbody>
+      </table>
+      <div class="paginate">
+        <pagination-controls (pageChange)="currentPgState = $event"></pagination-controls>
+        <div>
+            <small>Nº de itens por página</small>
+            <button class="button-page" (click)="decreasePageState()"><i class="fa fa-minus"></i></button>
+            <input class="input" [value]="pageNumber">
+            <button class="button-page" (click)="increasePageState()"><i class="fa fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Cidades">
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <button type="button" class="btn btn-outline-primary button-cad" matTooltip="Cadastrar Cidade" (click)="dialogCreateCity()">Cadastrar</button>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+          <thead class="thead-dark">
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">País</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Detalhes</th>
+                  <th scope="col">Atualizar</th>
+                  <th scope="col">Deletar</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let city of cities | paginate: {itemsPerPage: pageNumber, currentPage: currentPgCity}; let i= index">
+                  <td>{{i+1}}</td>
+                  <td>{{city.name}}</td>
+                  <td>{{city.state.name}}</td>
+                  <td>{{city.state.country.name}}</td>
+                  <td>{{city.status}}</td>
+                  <td><a class="icon-blue" matTooltip="Ver Cidade"><mat-icon>search</mat-icon></a></td>
+                  <td><a class="icon-green" matTooltip="Editar Cidade"><mat-icon>edit</mat-icon></a></td>
+                  <td><a class="icon-red" matTooltip="Excluir Cidade"><mat-icon>delete</mat-icon></a></td>
+              </tr>
+          </tbody>
+        </table>
+        <div class="paginate">
+          <pagination-controls (pageChange)="currentPgCity = $event"></pagination-controls>
+          <div>
+              <small>Nº de itens por página</small>
+              <button class="button-page" (click)="decreasePageCity()"><i class="fa fa-minus"></i></button>
+              <input class="input" [value]="pageNumber">
+              <button class="button-page" (click)="increasePageCity()"><i class="fa fa-plus"></i></button>
+          </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

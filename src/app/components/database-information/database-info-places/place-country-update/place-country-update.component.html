@@ -1,0 +1,58 @@
+<h1 mat-dialog-title class="border-bottom">Adicionar novo País: </h1>
+<div mat-dialog-content >
+    <form [formGroup]="countryForm" autocomplete="off" novalidate>
+      <mat-form-field appearance="outline">
+        <mat-label>Nome do País: </mat-label>
+        <input matInput placeholder="Brasil..." formControlName="name" required>
+        <mat-hint>Informe o Nome do País.</mat-hint>
+        <mat-error *ngIf="validateControl('name') && hasError('name', 'required')">Por favor, informe o nome do País.</mat-error>
+        <mat-error *ngIf="validateControl('name') && hasError('name', 'maxlength')">Máximo de 45 caracteres.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Sigla do País: </mat-label>
+        <input matInput placeholder="BR..." formControlName="acronym" required>
+        <mat-hint>Informe a Sigla referente ao País.</mat-hint>
+        <mat-error *ngIf="validateControl('acronym') && hasError('acronym', 'required')">Por favor, informe a sigla do País.</mat-error>
+        <mat-error *ngIf="validateControl('acronym') && hasError('acronym', 'maxlength')">Máximo de 05 caracteres.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Continente: </mat-label>
+        <mat-select matInput formControlName="continent" required>
+            <mat-option value="Americano">Americano</mat-option>
+            <mat-option value="Africano">Africano</mat-option>
+            <mat-option value="Asiático">Asiático</mat-option>
+            <mat-option value="Europeu">Europeu</mat-option>
+            <mat-option value="Antartico">Antartico</mat-option>
+            <mat-option value="Oceânico">Oceânico</mat-option>               
+        </mat-select>
+        <mat-hint>Selecione o Continente referente ao País.</mat-hint>
+        <mat-error *ngIf="validateControl('continent') && hasError('continent', 'required')">Por favor, selecione o continente do País.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Status: </mat-label>
+        <mat-select matInput formControlName="status" required>
+            <mat-option value="Ativo">Ativo</mat-option>
+            <mat-option value="Inativo">Inativo</mat-option>
+        </mat-select>
+        <mat-hint>Selecione o Status referente ao País.</mat-hint>
+        <mat-error *ngIf="validateControl('status') && hasError('status', 'required')">Por favor, selecione o status do País.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+          <mat-label>Data de Cadastro: </mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateCad" required>
+          <mat-hint>Mês/Dia/Ano --- Selecione a Data de Cad.</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="validateControl('dateCad') && hasError('dateCad', 'invalidDate')">A data de Cadastro não pode ser superior ao dia de hoje.</mat-error>
+      </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-action [align]="'end'" class="border-top">
+    <button id="close" class="close" mat-raised-button mat-dialog-close>Fechar</button>
+    <button class="save" mat-raised-button color="primary" [disabled]="!countryForm.valid" (click)="updateCountry">Atualizar</button>
+</div>
